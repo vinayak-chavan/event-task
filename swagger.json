@@ -1,0 +1,394 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Event API Documentation",
+        "version": "3.0.0",
+        "title": "Event API"
+    },
+    "schemes": ["http"],
+    "host": "localhost:5000",
+    "basePath": "/api/v3/app",
+    "paths" : {
+      "/event/{id}" : {
+            "get" : {
+                "summary" : "View the event",
+                "description": "View the event",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "event id that needs to be view",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/eventResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+      },
+        "/events" : {
+            "get" : {
+                "summary" : "Get all the events",
+                "description": "Get all the events",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/eventResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/event" : {
+            "post" : {
+                "summary" : "Save the event",
+                "description": "Save the event",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                   {
+                      "in": "formData",
+                      "name": "type",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add event type"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "uid",
+                      "type": "number",
+                      "required": "true",
+                      "description": "add user id"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "name",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add name"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "tagline",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add tagline"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "schedule",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add schedule"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "description",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add description"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "moderator",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add moderator"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "category",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add category"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "subCategory",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add subCategory"
+                    },
+                      {
+                      "in": "formData",
+                      "name": "rigorRank",
+                      "type": "number",
+                      "required": "true",
+                      "description": "add rigorRank"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "attendees",
+                      "type": "string",
+                      "description": "add attendees"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "files",
+                      "type": "file",
+                      "description": "The file to upload"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/eventResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/events/{id}" : {
+            "put" : {
+                "summary" : "Update the event",
+                "description": "Update the event",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                   {
+                      "in": "formData",
+                      "name": "type",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add event type"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "uid",
+                      "type": "number",
+                      "required": "true",
+                      "description": "add user id"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "name",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add name"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "tagline",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add tagline"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "schedule",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add schedule"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "description",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add description"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "moderator",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add moderator"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "category",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add category"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "subCategory",
+                      "type": "string",
+                      "required": "true",
+                      "description": "add subCategory"
+                    },
+                      {
+                      "in": "formData",
+                      "name": "rigorRank",
+                      "type": "number",
+                      "required": "true",
+                      "description": "add rigorRank"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "attendees",
+                      "type": "string",
+                      "description": "add attendees"
+                    },
+                    {
+                      "in": "formData",
+                      "name": "files",
+                      "type": "file",
+                      "description": "The file to upload"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/eventResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/even/{id}" : {
+            "delete" : {
+                "summary" : "Delete the event",
+                "description": "Delete the event",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "event id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/eventResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "Event": {
+            "type": "object",
+            "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tagline": {
+                    "type": "string"
+                },
+                "schedule": {
+                    "type": "string"
+                },
+                "description": {    
+                    "type": "string"
+                },
+                "moderator":{
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "subCategory": {
+                    "type": "string"
+                },
+                "rigorRank": {
+                    "type": "number"
+                },
+                "attendees": {
+                  "type": "array",
+                  "items": {
+                      "type": "integer"
+                  }
+                }
+            }
+        },
+        "eventResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "task": {
+                    "type": "string"
+                },
+                "assignee": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
